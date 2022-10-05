@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
           showCustomDateRangePicker(
             context,
             dismissible: true,
+            doneText: 'Dingdong',
             minimumDate: DateTime.now(),
             maximumDate: DateTime.now().add(const Duration(days: 30)),
             endDate: endDate,

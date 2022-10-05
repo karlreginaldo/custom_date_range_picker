@@ -17,6 +17,9 @@ class CustomDateRangePicker extends StatefulWidget {
 
   final DateTime maximumDate;
 
+  final String? doneText;
+  final String? cancelText;
+
   final bool barrierDismissible;
 
   final DateTime? initialStartDate;
@@ -36,6 +39,8 @@ class CustomDateRangePicker extends StatefulWidget {
     required this.minimumDate,
     required this.maximumDate,
     required this.onCancelClick,
+    this.doneText,
+    this.cancelText,
   }) : super(key: key);
 
   @override
@@ -232,10 +237,10 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                         Navigator.pop(context);
                                       } catch (_) {}
                                     },
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Cancel',
-                                        style: TextStyle(
+                                        widget.cancelText ?? 'Decline',
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 18,
                                           color: Colors.white,
@@ -275,10 +280,10 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                         Navigator.pop(context);
                                       } catch (_) {}
                                     },
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Apply',
-                                        style: TextStyle(
+                                        widget.doneText ?? 'Done',
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 18,
                                             color: Colors.white),
@@ -318,6 +323,8 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
 /// })`
 void showCustomDateRangePicker(
   BuildContext context, {
+  String? cancelText,
+  String? doneText,
   required bool dismissible,
   required DateTime minimumDate,
   required DateTime maximumDate,
@@ -335,6 +342,8 @@ void showCustomDateRangePicker(
     builder: (BuildContext context) => CustomDateRangePicker(
       barrierDismissible: true,
       minimumDate: minimumDate,
+      cancelText: cancelText,
+      doneText: doneText,
       maximumDate: maximumDate,
       initialStartDate: startDate,
       initialEndDate: endDate,
